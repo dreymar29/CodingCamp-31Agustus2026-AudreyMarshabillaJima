@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ───── THEME TOGGLE ───── -->
+  <div class="topbar">
+    <button id="theme-toggle" class="btn btn-ghost theme-btn" aria-label="Switch to light mode" title="Toggle light/dark mode">
+      <span id="theme-icon">☀️</span>
+      <span id="theme-label">Light Mode</span>
+    </button>
+  </div>
+
+  <!-- ───── GREETING ───── -->
+  <header class="greeting-section">
+    <p id="datetime" class="datetime"></p>
+    <h1 id="greeting" class="greeting"></h1>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- ───── FOCUS TIMER ───── -->
+    <section class="card" id="timer-card">
+      <h2 class="card-title">Focus Timer</h2>
+
+      <!-- Mode tabs -->
+      <div class="timer-modes">
+        <button id="mode-focus" class="mode-btn active">🍅 Focus — 25 min</button>
+        <button id="mode-rest"  class="mode-btn">☕ Rest — 5 min</button>
+      </div>
+
+      <div class="timer-display" id="timer-display">25:00</div>
+      <div class="timer-controls">
+        <button id="timer-start" class="btn btn-primary">Start</button>
+        <button id="timer-stop"  class="btn btn-secondary">Stop</button>
+        <button id="timer-reset" class="btn btn-ghost">Reset</button>
+      </div>
+      <p id="timer-status" class="timer-status">Ready to focus</p>
+    </section>
+
+    <!-- ───── TO-DO LIST ───── -->
+    <section class="card" id="todo-card">
+      <h2 class="card-title">To-Do List</h2>
+
+      <!-- Add task form -->
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <input
+          type="text"
+          id="todo-input"
+          class="input"
+          placeholder="Add a new task…"
+          maxlength="120"
+          required
+        />
+        <input
+          type="date"
+          id="todo-deadline"
+          class="input input-date"
+          title="Deadline (optional)"
+        />
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+
+      <!-- Sort controls -->
+      <div class="todo-toolbar">
+        <span class="toolbar-label">Sort by:</span>
+        <div class="sort-group">
+          <button id="sort-deadline" class="sort-btn active" data-sort="deadline">📅 Deadline</button>
+          <button id="sort-added"    class="sort-btn"        data-sort="added">🕐 Add</button>
+          <button id="sort-status"   class="sort-btn"        data-sort="status">✅ Status</button>
+        </div>
+      </div>
+
+      <ul id="todo-list" class="todo-list"></ul>
+      <p id="todo-empty" class="empty-hint">No tasks yet. Add one above!</p>
+    </section>
+
+    <!-- ───── QUICK LINKS ───── -->
+    <section class="card" id="links-card">
+      <h2 class="card-title">Quick Links</h2>
+      <form id="link-form" class="link-form" autocomplete="off">
+        <input
+          type="text"
+          id="link-name"
+          class="input"
+          placeholder="Label (e.g. GitHub)"
+          maxlength="30"
+          required
+        />
+        <input
+          type="url"
+          id="link-url"
+          class="input"
+          placeholder="https://example.com"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+      <div id="links-grid" class="links-grid"></div>
+      <p id="links-empty" class="empty-hint">No links yet. Add one above!</p>
+    </section>
+
+  </main>
+
+  <!-- ───── EDIT TASK MODAL ───── -->
+  <div id="edit-modal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h3>Edit Task</h3>
+      <input type="text" id="edit-input" class="input" maxlength="120" placeholder="Task name" />
+      <label class="modal-label" for="edit-deadline">Deadline</label>
+      <input type="date" id="edit-deadline" class="input" />
+      <label class="modal-done-row">
+        <input type="checkbox" id="edit-done" class="todo-checkbox" />
+        <span class="modal-done-label">Mark as done</span>
+      </label>
+      <div class="modal-actions">
+        <button id="edit-save"   class="btn btn-primary">Save</button>
+        <button id="edit-cancel" class="btn btn-ghost">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
